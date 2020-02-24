@@ -1,0 +1,97 @@
+import sys
+from PyDictionary import PyDictionary
+import random
+
+
+def game_core():
+    limit = 3
+    counter = 0
+    out = False
+    dictionary = PyDictionary
+    rando = ('Chicken', 'Hammer', 'Box', 'White', 'Mouse', 'Cup', 'Stand', 'Ear', 'Holder', 'Straw', 'Hat', 'Radiator',
+             'Vehicle', 'Light', 'Grill', 'Screen', 'Pillow', 'Button', 'Bracket', 'Window')
+    difficulty = ""
+    score = 0
+
+    replay = True
+    while replay:
+        if counter > limit:
+            print("You lose.")
+            sys.exit()
+        word = ""
+        word = (random.choice(rando))
+        dict_mean = dictionary.meaning(word)
+        difficulty = input(print("Level of Difficulty. (Easy, Medium, Hard) > "))
+        if difficulty == "Easy":
+            print("                                                                                                   ")
+            print(dict_mean)
+            print("                                                                                                   ")
+            print(len(word), "Letters")
+            print("                                                                                                   ")
+            print(rando)
+            guess = input(print("What's your guess?"))
+            if guess == word:
+                print("You win!")
+                score = score + 1
+                print("Your score is " + str(score))
+                wanna = input("Wanna play again? (Yes/No): ")
+                if wanna == "Yes":
+                    replay = True
+                else:
+                    replay = False
+            else:
+                print("                                                                                               ")
+                if counter > limit:
+                    score = score + 1
+                    print("You lose.")
+                    sys.exit()
+                else:
+                    print("Wrong, try again.")
+                    counter = counter + 1
+        if difficulty == "Medium":
+            print("                                                                                                   ")
+            print(dict_mean)
+            print("                                                                                                   ")
+            print(len(word), " Letter count.")
+            guess = input(print("What's your guess?"))
+            if guess == word:
+                score = score + 2
+                print("You win!")
+                print("Your score is " + str(score))
+                wanna = input("Play again? (Yes/No): ")
+                if wanna == "Yes":
+                    replay = True
+                else:
+                    replay = False
+            else:
+                print("                                                                                               ")
+                if counter > limit:
+                    print("You lose. Restarting game and score.")
+                    sys.exit()
+                else:
+                    print("Wrong, try again")
+                    counter = counter + 1
+        if difficulty == "Hard":
+            print("                                                                                                   ")
+            print(dict_mean)
+            guess = input(print("What's your guess?"))
+            if guess == word:
+                score = score + 3
+                print("You win!")
+                print("Your score is " + str(score))
+                wanna = input("Play again? (Yes/No): ")
+                if wanna == "Yes":
+                    replay = True
+                else:
+                    replay = False
+            else:
+                print("                                                                                               ")
+                if counter > limit:
+                    print("You lose. Restarting game and score.")
+                    sys.ext()
+                else:
+                    print("Wrong, try again.")
+                    counter = counter + 1
+
+
+game_core()
